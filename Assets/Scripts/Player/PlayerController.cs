@@ -5,17 +5,23 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private SimpleJoystick _joystick;
-    [SerializeField] private TextMeshProUGUI _healthText;
-    [SerializeField] private Transform _weapon;
 
-    [Header("Settings")]
+    [Header("Health Settings")]
+    [SerializeField] private int _health = 10;
+    [SerializeField] private TextMeshProUGUI _healthText;
+
+    [Header("Movement Settings")]
+    [SerializeField] private SimpleJoystick _joystick;
     [SerializeField] private float _playerSpeed = 3f;
+
+    [Header("Weapon Settings")]
+    [SerializeField] private Transform _weapon;
     [SerializeField] private float _orbitRadius = 1.2f;
+
+    [Header("Dash Settings")]
     [SerializeField] private float _dashSpeed = 8f;
     [SerializeField] private float _dashDuration = 0.1f;
     [SerializeField] private float _dashCooldown = 2f;
-    [SerializeField] private int _health = 10;
 
     private bool _isDashing = false;
     private float _dashTimer = 0f;
