@@ -29,13 +29,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _input;
     private Vector2 _lastDirection;
+    private Vector2 _externalForce; // <-- Knockback force
 
     void Update()
     {
-        // Cooldown tick
         _dashCooldownTimer -= Time.deltaTime;
 
-        // Read input
         _input = new Vector2(_joystick.Horizontal(), _joystick.Vertical());
 
         if (_input.sqrMagnitude > 0.01f)
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour
             _weapon.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         }
 
-        // Dash end logic
         if (_isDashing)
         {
             _dashTimer -= Time.deltaTime;
@@ -67,7 +65,12 @@ public class PlayerController : MonoBehaviour
         else if (_input.sqrMagnitude > 0.01f)
             velocity = _input * _playerSpeed;
 
-        _rb.MovePosition(_rb.position + velocity * Time.fixedDeltaTime);
+        Vector2 totalVelocity = velocity + _externalForce;
+
+        _rb.MovePosition(_rb.position + totalVelocity * Time.fixedDeltaTime);
+
+        // Decay knockback force
+        _externalForce = Vector2.Lerp(_externalForce, Vector2.zero, 10f * Time.fixedDeltaTime);
     }
 
     public void OnDashButtonPressed()
@@ -87,5 +90,10 @@ public class PlayerController : MonoBehaviour
 
         if (_health <= 0)
             Destroy(gameObject);
+    }
+
+    public void ApplyKnockback(Vector2 force)
+    {
+        _externalForce = force;
     }
 }

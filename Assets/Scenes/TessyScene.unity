@@ -2023,7 +2023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa0d58c64e8b4b23b4720f6b81135a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knockbackForce: 10
+  _knockbackForce: 8
+  _owner: {fileID: 999587366}
 --- !u!1 &1100060069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa0d58c64e8b4b23b4720f6b81135a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _knockbackForce: 10
+  _knockbackForce: 8
+  _owner: {fileID: 983877836}
 --- !u!1 &1572428952
 GameObject:
   m_ObjectHideFlags: 0
