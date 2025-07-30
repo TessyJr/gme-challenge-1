@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AmarScene.unity
     guid: 4446b0b63c66c40879b80260c163046c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ArenaScene.unity
     guid: e43c9516c62e240a785d496dc9f16ba5
+  - enabled: 1
+    path: Assets/Scenes/MeteorScene.unity
+    guid: 371a3ba5448c34d079d41fecbc60e183
   m_configObjects: {}
