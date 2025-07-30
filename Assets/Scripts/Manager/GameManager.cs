@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
     [Header("Player Joystick")]
     [SerializeField] private SimpleJoystick joystickOne;
     [SerializeField] private SimpleJoystick joystickTwo;
+
+    [Header("Player Skill Button")]
+    [SerializeField] private Button playerOneSkillButton;
+    [SerializeField] private Button playerTwoSkillButton;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI timerText;
@@ -49,9 +54,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI backText;
     [SerializeField] private GameObject resetButton;
     [SerializeField] private GameObject backButton;
-
-
-
 
     // Start is called before the first frame update
     void Awake()
@@ -80,11 +82,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"health of p1 : {playerInfo1.getHealth()}");
-        Debug.Log($"health of p2 : {playerInfo2.getHealth()}");
+        Debug.Log($"health of p1 : {playerInfo1.GetHealth()}");
+        Debug.Log($"health of p2 : {playerInfo2.GetHealth()}");
         TimerCounting();
         WinningCondition();
     }
+
     private void SpawnPlayers()
     {
         if (playerOne != null) Destroy(playerOne);
@@ -95,8 +98,26 @@ public class GameManager : MonoBehaviour
 
         playerInfo1 = playerOne.GetComponent<PlayerController>();
         playerInfo1._joystick = joystickOne;
+
         playerInfo2 = playerTwo.GetComponent<PlayerController>();
         playerInfo2._joystick = joystickTwo;
+
+        // Clear previous listeners
+        playerOneSkillButton.onClick.RemoveAllListeners();
+        playerTwoSkillButton.onClick.RemoveAllListeners();
+
+        // Add UseSkill button listeners
+        var skillController1 = playerOne.GetComponent<PlayerSkillController>();
+        if (skillController1 != null)
+        {
+            playerOneSkillButton.onClick.AddListener(skillController1.UseSkill);
+        }
+
+        var skillController2 = playerTwo.GetComponent<PlayerSkillController>();
+        if (skillController2 != null)
+        {
+            playerTwoSkillButton.onClick.AddListener(skillController2.UseSkill);
+        }
     }
 
     private void TimerCounting()
@@ -120,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        if (playerInfo1.getHealth() <= 0 && playerInfo2.getHealth() > 0)
+        if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() > 0)
         {
             p1Win = false;
             p2Win = true;
@@ -136,7 +157,7 @@ public class GameManager : MonoBehaviour
             resetButton.SetActive(true);
             backButton.SetActive(true);
         }
-        else if (playerInfo2.getHealth() <= 0 && playerInfo1.getHealth() > 0)
+        else if (playerInfo2.GetHealth() <= 0 && playerInfo1.GetHealth() > 0)
         {
             p1Win = true;
             p2Win = false;
@@ -152,7 +173,7 @@ public class GameManager : MonoBehaviour
             resetButton.SetActive(true);
             backButton.SetActive(true);
         }
-        else if (playerInfo1.getHealth() <= 0 && playerInfo2.getHealth() <= 0)
+        else if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() <= 0)
         {
             //tetep ada draw condition kah?
             ExtraTime();

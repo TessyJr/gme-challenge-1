@@ -18,19 +18,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _weapon;
     [SerializeField] private float _orbitRadius = 1.2f;
 
-    [Header("Dash Settings")]
-    [SerializeField] private float _dashSpeed = 8f;
-    [SerializeField] private float _dashDuration = 0.1f;
-    [SerializeField] private float _dashCooldown = 2f;
+    // DASH
+    private float _dashSpeed;
+    private bool _isDashing = false;
+    private float _dashTimer = 0f;
+
+    //SHIELD
+    private bool _isShielded = false;
 
     //SPIKE
     private bool isTouchingSpike = false;
     private float spikeDamageTimer = 0f;
     private float spikeDamageInterval = .8f;
-
-    private bool _isDashing = false;
-    private float _dashTimer = 0f;
-    private float _dashCooldownTimer = 0f;
 
     private Vector2 _input;
     private Vector2 _lastDirection;
@@ -40,10 +39,9 @@ public class PlayerController : MonoBehaviour
     {
         _healthText.text = _health.ToString();
     }
+
     void Update()
     {
-        _dashCooldownTimer -= Time.deltaTime;
-
         _input = new Vector2(_joystick.Horizontal(), _joystick.Vertical());
 
         if (_input.sqrMagnitude > 0.01f)
@@ -92,18 +90,20 @@ public class PlayerController : MonoBehaviour
         _externalForce = Vector2.Lerp(_externalForce, Vector2.zero, 10f * Time.fixedDeltaTime);
     }
 
-    public void OnDashButtonPressed()
+    public void Dash(float dashSpeed, float _dashDuration)
     {
-        if (_dashCooldownTimer <= 0f && _lastDirection.sqrMagnitude > 0.01f)
+        if (_lastDirection.sqrMagnitude > 0.01f)
         {
+            _dashSpeed = dashSpeed;
             _isDashing = true;
             _dashTimer = _dashDuration;
-            _dashCooldownTimer = _dashCooldown;
         }
     }
 
     public void DecreaseHealth(int amount)
     {
+        if (_isShielded) return;
+
         _health -= amount;
         _healthText.text = _health.ToString();
 
@@ -114,11 +114,6 @@ public class PlayerController : MonoBehaviour
     public void ApplyKnockback(Vector2 force)
     {
         _externalForce = force;
-    }
-
-    public int getHealth()
-    {
-        return _health;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -148,4 +143,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int GetHealth() => _health;
+    public void SetIsShielded(bool isShielded) => _isShielded = isShielded;
 }

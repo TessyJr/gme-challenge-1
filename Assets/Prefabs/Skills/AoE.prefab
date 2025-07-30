@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 0, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,10 +94,10 @@ GameObject:
   m_Component:
   - component: {fileID: 231055832790585914}
   - component: {fileID: 3988294309085028293}
-  - component: {fileID: 3794627161472724961}
+  - component: {fileID: 3348602098809269134}
   - component: {fileID: 1414415755767378340}
   m_Layer: 0
-  m_Name: Meteor
+  m_Name: AoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,8 +113,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5492360570593589028}
   m_Father: {fileID: 0}
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.019607844}
+  m_Color: {r: 1, g: 1, b: 0, a: 0.078431375}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3794627161472724961
+--- !u!114 &3348602098809269134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,12 +180,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5428816526165078575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50b871d275d214e5d9b995a4d8e2fa8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 53921a4094b064f818a7f2ede1b48152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _indicator: {fileID: 3613244071484554644}
   _indicatorDuration: 2
-  _stayDuration: 2
+  _stayDuration: 1
+  _knockbackForce: 5
 --- !u!58 &1414415755767378340
 CircleCollider2D:
   m_ObjectHideFlags: 0

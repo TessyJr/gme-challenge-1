@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MeteorController : MonoBehaviour
+public class AoEControlller : MonoBehaviour
 {
     [Header("Indicator Settings")]
     [SerializeField] private GameObject _indicator;
@@ -13,8 +13,8 @@ public class MeteorController : MonoBehaviour
     [Header("Knockback Settings")]
     [SerializeField] private float _knockbackForce = 5f;
 
-    public bool _isReadyToDamage = false;
-    public bool _hasDamaged = false;
+    private bool _isReadyToDamage = false;
+    private bool _hasDamaged = false;
 
     private void Start()
     {
