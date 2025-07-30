@@ -23,7 +23,7 @@ public class WeaponController : MonoBehaviour
                 Vector2 knockbackDir = (target.transform.position - transform.position).normalized;
                 target.ApplyKnockback(knockbackDir * _knockbackForce);
 
-                Debug.Log($"[Player Knockback] {target.name} ← {knockbackDir}");
+                // Debug.Log($"[Player Knockback] {target.name} ← {knockbackDir}");
             }
         }
 
@@ -40,7 +40,7 @@ public class WeaponController : MonoBehaviour
                 otherPlayer.ApplyKnockback(dirToOther * _knockbackForce);
                 _owner.ApplyKnockback(dirToSelf * _knockbackForce);
 
-                Debug.Log($"[Weapon Clash] {_owner.name} ⇄ {otherPlayer.name}");
+                // Debug.Log($"[Weapon Clash] {_owner.name} ⇄ {otherPlayer.name}");
             }
         }
     }

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _healthText;
 
     [Header("Movement Settings")]
-    [SerializeField] private SimpleJoystick _joystick;
+    public SimpleJoystick _joystick;
     [SerializeField] private float _playerSpeed = 3f;
 
     [Header("Weapon Settings")]
@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashDuration = 0.1f;
     [SerializeField] private float _dashCooldown = 2f;
 
+    //SPIKE
+    private bool isTouchingSpike = false;
+    private float spikeDamageTimer = 0f;
+    private float spikeDamageInterval = .8f;
+
     private bool _isDashing = false;
     private float _dashTimer = 0f;
     private float _dashCooldownTimer = 0f;
@@ -31,6 +36,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 _lastDirection;
     private Vector2 _externalForce; // <-- Knockback force
 
+    void Start()
+    {
+        _healthText.text = _health.ToString();
+    }
     void Update()
     {
         _dashCooldownTimer -= Time.deltaTime;
@@ -53,6 +62,16 @@ public class PlayerController : MonoBehaviour
             _dashTimer -= Time.deltaTime;
             if (_dashTimer <= 0f)
                 _isDashing = false;
+        }
+
+        if (isTouchingSpike)
+        {
+            spikeDamageTimer -= Time.deltaTime;
+            if (spikeDamageTimer <= 0f)
+            {
+                DecreaseHealth(2);
+                spikeDamageTimer = spikeDamageInterval;
+            }
         }
     }
 
@@ -96,4 +115,37 @@ public class PlayerController : MonoBehaviour
     {
         _externalForce = force;
     }
+
+    public int getHealth()
+    {
+        return _health;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "SpikeAbove")
+        {
+            Debug.Log("HIT SPIKE PERTAMA");
+            DecreaseHealth(2);
+            isTouchingSpike = true;
+            spikeDamageTimer = spikeDamageInterval;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "SpikeAbove")
+        {
+            isTouchingSpike = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "SpikeAbove")
+        {
+            isTouchingSpike = false;
+        }
+    }
+
 }
