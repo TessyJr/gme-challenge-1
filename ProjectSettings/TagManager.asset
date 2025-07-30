@@ -7,6 +7,7 @@ TagManager:
   - Weapon
   - Head
   - Spike
+  - SkillBuff
   layers:
   - Default
   - TransparentFX
