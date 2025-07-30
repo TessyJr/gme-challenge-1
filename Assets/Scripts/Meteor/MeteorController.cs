@@ -13,8 +13,8 @@ public class MeteorController : MonoBehaviour
     [Header("Knockback Settings")]
     [SerializeField] private float _knockbackForce = 5f;
 
-    private bool _isReadyToDamage = false;
-    private bool _hasDamaged = false;
+    public bool _isReadyToDamage = false;
+    public bool _hasDamaged = false;
 
     private void Start()
     {

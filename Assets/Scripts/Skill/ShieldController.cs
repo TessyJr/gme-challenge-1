@@ -8,7 +8,7 @@ public class ShieldController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Weapon"))
+        if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Meteor"))
         {
             if (_playerController != null)
             {
@@ -35,6 +35,25 @@ public class ShieldController : MonoBehaviour
             }
 
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Meteor"))
+        {
+            MeteorController meteorController = collision.gameObject.GetComponent<MeteorController>();
+
+            if (meteorController._isReadyToDamage && !meteorController._hasDamaged)
+            {
+                if (_playerController != null)
+                {
+                    Vector2 knockbackDir = (_playerController.transform.position - collision.transform.position).normalized;
+
+                    _playerController.ApplyKnockback(knockbackDir * _knockbackForce);
+                    _playerController.SetIsShielded(false);
+
+                    meteorController._hasDamaged = true;
+                }
+
+                Destroy(gameObject);
+            }
         }
     }
 

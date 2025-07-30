@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5206864077362216324}
   - component: {fileID: 7385783958814471781}
   - component: {fileID: 6884211201200759157}
+  - component: {fileID: 3624522631480694876}
   - component: {fileID: 2028975285950745275}
   - component: {fileID: 6571841798452871377}
   m_Layer: 0
@@ -344,9 +345,19 @@ MonoBehaviour:
   _playerSpeed: 1
   _weapon: {fileID: 2182347990175454591}
   _orbitRadius: 1.2
-  _dashSpeed: 8
-  _dashDuration: 0.1
-  _dashCooldown: 2
+--- !u!114 &3624522631480694876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2197334648311510677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64696649d2c374a168ea44cb8cea451c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skill: {fileID: 0}
 --- !u!50 &2028975285950745275
 Rigidbody2D:
   serializedVersion: 4

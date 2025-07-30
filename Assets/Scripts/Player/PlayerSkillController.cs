@@ -4,14 +4,6 @@ public class PlayerSkillController : MonoBehaviour
 {
     [SerializeField] private Skill _skill;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UseSkill();
-        }
-    }
-
     public void UseSkill()
     {
         if (_skill)

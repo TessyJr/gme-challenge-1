@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
     [Header("Player Joystick")]
     [SerializeField] private SimpleJoystick joystickOne;
     [SerializeField] private SimpleJoystick joystickTwo;
+
+    [Header("Player Skill Button")]
+    [SerializeField] private Button playerOneSkillButton;
+    [SerializeField] private Button playerTwoSkillButton;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI timerText;
@@ -49,9 +54,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI backText;
     [SerializeField] private GameObject resetButton;
     [SerializeField] private GameObject backButton;
-
-
-
 
     // Start is called before the first frame update
     void Awake()
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
         TimerCounting();
         WinningCondition();
     }
+
     private void SpawnPlayers()
     {
         if (playerOne != null) Destroy(playerOne);
@@ -95,8 +98,26 @@ public class GameManager : MonoBehaviour
 
         playerInfo1 = playerOne.GetComponent<PlayerController>();
         playerInfo1._joystick = joystickOne;
+
         playerInfo2 = playerTwo.GetComponent<PlayerController>();
         playerInfo2._joystick = joystickTwo;
+
+        // Clear previous listeners
+        playerOneSkillButton.onClick.RemoveAllListeners();
+        playerTwoSkillButton.onClick.RemoveAllListeners();
+
+        // Add UseSkill button listeners
+        var skillController1 = playerOne.GetComponent<PlayerSkillController>();
+        if (skillController1 != null)
+        {
+            playerOneSkillButton.onClick.AddListener(skillController1.UseSkill);
+        }
+
+        var skillController2 = playerTwo.GetComponent<PlayerSkillController>();
+        if (skillController2 != null)
+        {
+            playerTwoSkillButton.onClick.AddListener(skillController2.UseSkill);
+        }
     }
 
     private void TimerCounting()

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22c4af451b2c4fc19e08c4cef91ee72, type: 3}
   m_Name: Dash Skill
   m_EditorClassIdentifier: 
-  dashDistance: 5
-  dashDuration: 0.2
+  _dashSpeed: 8
+  _dashDuration: 0.1
