@@ -188,6 +188,8 @@ public class GameManager : MonoBehaviour
         Vector3 resetPosBelow = new Vector3(0, -6f, 0);
         spikeBelow.transform.position = resetPosBelow;
 
+        remainingTime = 10f;
+
         SpawnPlayers();
     }
 }
