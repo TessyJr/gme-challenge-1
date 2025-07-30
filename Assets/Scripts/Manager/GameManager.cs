@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,7 +45,11 @@ public class GameManager : MonoBehaviour
     [Header("Winning Condition")]
     [SerializeField] private TextMeshProUGUI winText1;
     [SerializeField] private TextMeshProUGUI winText2;
+    [SerializeField] private TextMeshProUGUI resetText;
+    [SerializeField] private TextMeshProUGUI backText;
     [SerializeField] private GameObject resetButton;
+    [SerializeField] private GameObject backButton;
+
 
 
 
@@ -65,7 +70,10 @@ public class GameManager : MonoBehaviour
     {
         winText1.gameObject.SetActive(false);
         winText2.gameObject.SetActive(false);
+        resetText.gameObject.SetActive(false);
+        backText.gameObject.SetActive(false);
         resetButton.SetActive(false);
+        backButton.SetActive(false);
         SpawnPlayers();
     }
 
@@ -123,6 +131,10 @@ public class GameManager : MonoBehaviour
             winText1.gameObject.SetActive(true);
             winText2.gameObject.SetActive(true);
             resetButton.SetActive(true);
+            resetText.gameObject.SetActive(true);
+            backText.gameObject.SetActive(true);
+            resetButton.SetActive(true);
+            backButton.SetActive(true);
         }
         else if (playerInfo2.getHealth() <= 0 && playerInfo1.getHealth() > 0)
         {
@@ -135,6 +147,10 @@ public class GameManager : MonoBehaviour
             winText1.gameObject.SetActive(true);
             winText2.gameObject.SetActive(true);
             resetButton.SetActive(true);
+            resetText.gameObject.SetActive(true);
+            backText.gameObject.SetActive(true);
+            resetButton.SetActive(true);
+            backButton.SetActive(true);
         }
         else if (playerInfo1.getHealth() <= 0 && playerInfo2.getHealth() <= 0)
         {
@@ -178,6 +194,10 @@ public class GameManager : MonoBehaviour
         winText1.gameObject.SetActive(false);
         winText2.gameObject.SetActive(false);
         resetButton.SetActive(false);
+        resetText.gameObject.SetActive(false);
+        backText.gameObject.SetActive(false);
+        resetButton.SetActive(false);
+        backButton.SetActive(false);
         p1Win = false;
         p2Win = false;
         isGameOver = false;
@@ -191,6 +211,11 @@ public class GameManager : MonoBehaviour
         remainingTime = 10f;
 
         SpawnPlayers();
+    }
+
+    public void GoToHome()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
 
