@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53921a4094b064f818a7f2ede1b48152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 1414415755767378340}
   _indicator: {fileID: 3613244071484554644}
   _indicatorDuration: 2
   _stayDuration: 1
@@ -194,7 +195,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5428816526165078575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
