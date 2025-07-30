@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MeteorController : MonoBehaviour
 {
+    [Header("Collider Settings")]
+    [SerializeField] private CircleCollider2D _collider;
+
     [Header("Indicator Settings")]
     [SerializeField] private GameObject _indicator;
     [SerializeField] private float _indicatorDuration = 1f;
@@ -12,9 +15,6 @@ public class MeteorController : MonoBehaviour
 
     [Header("Knockback Settings")]
     [SerializeField] private float _knockbackForce = 5f;
-
-    public bool _isReadyToDamage = false;
-    public bool _hasDamaged = false;
 
     private void Start()
     {
@@ -37,10 +37,9 @@ public class MeteorController : MonoBehaviour
             yield return null;
         }
 
+        _collider.enabled = true;
         _indicator.transform.localScale = Vector3.one;
-        _isReadyToDamage = true;
 
-        // STAY ACTIVE PHASE
         yield return new WaitForSeconds(_stayDuration);
 
         Destroy(gameObject);
@@ -58,8 +57,6 @@ public class MeteorController : MonoBehaviour
 
     private void TryDamagePlayer(Collider2D collision)
     {
-        if (!_isReadyToDamage || _hasDamaged) return;
-
         if (collision.CompareTag("Player"))
         {
             var player = collision.GetComponent<PlayerController>();
@@ -71,7 +68,6 @@ public class MeteorController : MonoBehaviour
                 Vector2 knockback = knockbackDir * _knockbackForce;
                 player.ApplyKnockback(knockback);
 
-                _hasDamaged = true;
                 Destroy(gameObject);
             }
         }
