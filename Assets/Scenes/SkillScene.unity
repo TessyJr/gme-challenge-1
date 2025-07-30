@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 102052654}
   - component: {fileID: 102052653}
   m_Layer: 0
-  m_Name: SkillBuff
+  m_Name: DashBuff
   m_TagString: SkillBuff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 404152868}
   - component: {fileID: 404152867}
   m_Layer: 0
-  m_Name: SkillBuff (1)
+  m_Name: ShieldBuff
   m_TagString: SkillBuff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
