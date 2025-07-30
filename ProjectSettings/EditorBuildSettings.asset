@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TessyScene.unity
     guid: 7d6416e3f83454e9fa7b6d0566aee0f5
+  - enabled: 0
+    path: Assets/Scenes/AmarScene.unity
+    guid: 4446b0b63c66c40879b80260c163046c
+  - enabled: 1
+    path: Assets/Scenes/ArenaScene.unity
+    guid: e43c9516c62e240a785d496dc9f16ba5
   m_configObjects: {}
