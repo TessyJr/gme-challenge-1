@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"health of p1 : {playerInfo1.getHealth()}");
-        Debug.Log($"health of p2 : {playerInfo2.getHealth()}");
+        Debug.Log($"health of p1 : {playerInfo1.GetHealth()}");
+        Debug.Log($"health of p2 : {playerInfo2.GetHealth()}");
         TimerCounting();
         WinningCondition();
     }
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        if (playerInfo1.getHealth() <= 0 && playerInfo2.getHealth() > 0)
+        if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() > 0)
         {
             p1Win = false;
             p2Win = true;
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
             resetButton.SetActive(true);
             backButton.SetActive(true);
         }
-        else if (playerInfo2.getHealth() <= 0 && playerInfo1.getHealth() > 0)
+        else if (playerInfo2.GetHealth() <= 0 && playerInfo1.GetHealth() > 0)
         {
             p1Win = true;
             p2Win = false;
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             resetButton.SetActive(true);
             backButton.SetActive(true);
         }
-        else if (playerInfo1.getHealth() <= 0 && playerInfo2.getHealth() <= 0)
+        else if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() <= 0)
         {
             //tetep ada draw condition kah?
             ExtraTime();

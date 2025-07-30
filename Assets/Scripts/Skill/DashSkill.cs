@@ -9,8 +9,7 @@ public class DashSkill : Skill
 
     public override void UseSkill(GameObject user)
     {
-        PlayerController player = user.GetComponent<PlayerController>();
-        if (player == null) return;
+        if (!user.TryGetComponent<PlayerController>(out var player)) return;
 
         player.Dash(_dashSpeed, _dashDuration);
     }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Shield Skill
   m_EditorClassIdentifier: 
   shieldDuration: 3
-  shieldPrefab: {fileID: 0}
+  shieldPrefab: {fileID: 7226993854684418045, guid: 316eb8d09542f41aa80a6a1dba13cc00, type: 3}

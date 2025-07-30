@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     private bool _isDashing = false;
     private float _dashTimer = 0f;
 
+    //SHIELD
+    private bool _isShielded = false;
+
     //SPIKE
     private bool isTouchingSpike = false;
     private float spikeDamageTimer = 0f;
@@ -99,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
     public void DecreaseHealth(int amount)
     {
+        if (_isShielded) return;
+
         _health -= amount;
         _healthText.text = _health.ToString();
 
@@ -109,11 +114,6 @@ public class PlayerController : MonoBehaviour
     public void ApplyKnockback(Vector2 force)
     {
         _externalForce = force;
-    }
-
-    public int getHealth()
-    {
-        return _health;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -143,4 +143,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int GetHealth() => _health;
+    public void SetIsShielded(bool isShielded) => _isShielded = isShielded;
 }

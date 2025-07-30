@@ -8,7 +8,13 @@ public class ShieldSkill : Skill
 
     public override void UseSkill(GameObject user)
     {
-        // GameObject shield = Object.Instantiate(shieldPrefab, user.transform.position, Quaternion.identity, user.transform);
-        // Object.Destroy(shield, shieldDuration);
+        if (!user.TryGetComponent<PlayerController>(out var player)) return;
+
+        player.SetIsShielded(true);
+
+        GameObject shield = Instantiate(shieldPrefab, user.transform.position, Quaternion.identity, user.transform);
+        shield.GetComponent<ShieldController>().SetPlayerController(player);
+
+        Destroy(shield, shieldDuration);
     }
 }
