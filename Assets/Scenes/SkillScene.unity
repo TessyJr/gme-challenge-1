@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e16bf297fd084b14b2a769af4dce5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skill: {fileID: 11400000, guid: 860ea5acdb8df4165bd042255c7939b4, type: 2}
+  _skill: {fileID: 0}
 --- !u!212 &102052655
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1854,9 +1854,6 @@ MonoBehaviour:
   _playerSpeed: 1
   _weapon: {fileID: 1461019274}
   _orbitRadius: 1.2
-  _dashSpeed: 8
-  _dashDuration: 0.1
-  _dashCooldown: 2
 --- !u!50 &983877837
 Rigidbody2D:
   serializedVersion: 4
@@ -2045,9 +2042,6 @@ MonoBehaviour:
   _playerSpeed: 1
   _weapon: {fileID: 1083406708}
   _orbitRadius: 1.2
-  _dashSpeed: 8
-  _dashDuration: 0.1
-  _dashCooldown: 2
 --- !u!50 &999587367
 Rigidbody2D:
   serializedVersion: 4
