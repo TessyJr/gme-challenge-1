@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +5,8 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
     // Start is called before the first frame update
+
+    [SerializeField] private string _sceneName;
 
     void Awake()
     {
@@ -20,19 +20,8 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void StartGame()
     {
-        SceneManager.LoadScene("ArenaScene");
+        SceneManager.LoadScene(_sceneName);
     }
 }

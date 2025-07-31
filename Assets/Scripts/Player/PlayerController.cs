@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
         _rb.MovePosition(_rb.position + totalVelocity * Time.fixedDeltaTime);
 
-        // Decay knockback force
         _externalForce = Vector2.Lerp(_externalForce, Vector2.zero, 10f * Time.fixedDeltaTime);
     }
 
@@ -118,9 +117,8 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "SpikeAbove")
+        if (collision.gameObject.CompareTag("Spike"))
         {
-            Debug.Log("HIT SPIKE PERTAMA");
             DecreaseHealth(2);
             isTouchingSpike = true;
             spikeDamageTimer = spikeDamageInterval;
@@ -129,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "SpikeAbove")
+        if (collision.gameObject.CompareTag("Spike"))
         {
             isTouchingSpike = true;
         }
@@ -137,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "SpikeAbove")
+        if (collision.gameObject.CompareTag("Spike"))
         {
             isTouchingSpike = false;
         }
