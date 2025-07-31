@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 3870511171101322522}
-  _health: 5
+  _health: 50
   _healthText: {fileID: 763824565616141129}
   _joystick: {fileID: 0}
   _playerSpeed: 1
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skill: {fileID: 0}
+  _skillButtonIcon: {fileID: 0}
 --- !u!50 &3870511171101322522
 Rigidbody2D:
   serializedVersion: 4

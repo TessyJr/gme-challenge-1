@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ddedbc98072a4a89b110b8593911dc9, type: 3}
   m_Name: Shield Skill
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 5159be11fdfe44f1aa340aebeeb8707f, type: 3}
   shieldDuration: 3
   shieldPrefab: {fileID: 7226993854684418045, guid: 316eb8d09542f41aa80a6a1dba13cc00, type: 3}

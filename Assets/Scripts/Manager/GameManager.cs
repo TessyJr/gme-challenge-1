@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [Header("Player Skill Button")]
     [SerializeField] private Button playerOneSkillButton;
     [SerializeField] private Button playerTwoSkillButton;
+    [SerializeField] private Image playerOneSkillButtonIcon;
+    [SerializeField] private Image playerTwoSkillButtonIcon;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI timerText;
@@ -102,21 +104,20 @@ public class GameManager : MonoBehaviour
         playerInfo2 = playerTwo.GetComponent<PlayerController>();
         playerInfo2._joystick = joystickTwo;
 
-        // Clear previous listeners
         playerOneSkillButton.onClick.RemoveAllListeners();
         playerTwoSkillButton.onClick.RemoveAllListeners();
 
         // Add UseSkill button listeners
-        var skillController1 = playerOne.GetComponent<PlayerSkillController>();
-        if (skillController1 != null)
+        if (playerOne.TryGetComponent<PlayerSkillController>(out var skillController1))
         {
             playerOneSkillButton.onClick.AddListener(skillController1.UseSkill);
+            skillController1._skillButtonIcon = playerOneSkillButtonIcon;
         }
 
-        var skillController2 = playerTwo.GetComponent<PlayerSkillController>();
-        if (skillController2 != null)
+        if (playerTwo.TryGetComponent<PlayerSkillController>(out var skillController2))
         {
             playerTwoSkillButton.onClick.AddListener(skillController2.UseSkill);
+            skillController2._skillButtonIcon = playerTwoSkillButtonIcon;
         }
     }
 
