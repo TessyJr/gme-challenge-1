@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] GameObject resultGUI;
 
     [Header("Spike")]
     [SerializeField] private GameObject spikeAbove;
@@ -72,12 +73,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        winText1.gameObject.SetActive(false);
-        winText2.gameObject.SetActive(false);
-        resetText.gameObject.SetActive(false);
-        backText.gameObject.SetActive(false);
-        resetButton.SetActive(false);
-        backButton.SetActive(false);
+        // winText1.gameObject.SetActive(false);
+        // winText2.gameObject.SetActive(false);
+        // resetText.gameObject.SetActive(false);
+        // backText.gameObject.SetActive(false);
+        // resetButton.SetActive(false);
+        // backButton.SetActive(false);
+        resultGUI.SetActive(false);
         SpawnPlayers();
     }
 
@@ -150,13 +152,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player 2 Wins");
             winText1.text = "LOSE";
             winText2.text = "WIN";
-            winText1.gameObject.SetActive(true);
-            winText2.gameObject.SetActive(true);
-            resetButton.SetActive(true);
-            resetText.gameObject.SetActive(true);
-            backText.gameObject.SetActive(true);
-            resetButton.SetActive(true);
-            backButton.SetActive(true);
+            resultGUI.SetActive(true);
+
+            // winText1.gameObject.SetActive(true);
+            // winText2.gameObject.SetActive(true);
+            // resetButton.SetActive(true);
+            // resetText.gameObject.SetActive(true);
+            // backText.gameObject.SetActive(true);
+            // resetButton.SetActive(true);
+            // backButton.SetActive(true);
         }
         else if (playerInfo2.GetHealth() <= 0 && playerInfo1.GetHealth() > 0)
         {
@@ -166,13 +170,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player 1 Wins");
             winText1.text = "WIN";
             winText2.text = "LOSE";
-            winText1.gameObject.SetActive(true);
-            winText2.gameObject.SetActive(true);
-            resetButton.SetActive(true);
-            resetText.gameObject.SetActive(true);
-            backText.gameObject.SetActive(true);
-            resetButton.SetActive(true);
-            backButton.SetActive(true);
+            resultGUI.SetActive(true);
+
+            // winText1.gameObject.SetActive(true);
+            // winText2.gameObject.SetActive(true);
+            // resetButton.SetActive(true);
+            // resetText.gameObject.SetActive(true);
+            // backText.gameObject.SetActive(true);
+            // resetButton.SetActive(true);
+            // backButton.SetActive(true);
         }
         else if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() <= 0)
         {
@@ -213,13 +219,14 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        winText1.gameObject.SetActive(false);
-        winText2.gameObject.SetActive(false);
-        resetButton.SetActive(false);
-        resetText.gameObject.SetActive(false);
-        backText.gameObject.SetActive(false);
-        resetButton.SetActive(false);
-        backButton.SetActive(false);
+        // winText1.gameObject.SetActive(false);
+        // winText2.gameObject.SetActive(false);
+        // resetButton.SetActive(false);
+        // resetText.gameObject.SetActive(false);
+        // backText.gameObject.SetActive(false);
+        // resetButton.SetActive(false);
+        // backButton.SetActive(false);
+        resultGUI.SetActive(false);
         p1Win = false;
         p2Win = false;
         isGameOver = false;
