@@ -36,7 +36,7 @@ public class ShieldController : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Meteor"))
+        else if (collision.gameObject.CompareTag("Meteor") || collision.gameObject.CompareTag("Spike"))
         {
             if (_playerController != null)
             {
@@ -48,6 +48,11 @@ public class ShieldController : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    void OnDestroy()
+    {
+        _playerController.SetIsShielded(false);
     }
 
     public void SetPlayerController(PlayerController playerController) => _playerController = playerController;

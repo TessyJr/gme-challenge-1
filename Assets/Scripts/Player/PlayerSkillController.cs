@@ -26,11 +26,17 @@ public class PlayerSkillController : MonoBehaviour
         if (collidedObject.CompareTag("SkillBuff"))
         {
             SkillBuff skillBuff = collidedObject.GetComponent<SkillBuff>();
-            _skill = skillBuff.GetSkill();
-            skillBuff.TakeBuff();
 
-            _skillButtonIcon.enabled = true;
-            _skillButtonIcon.sprite = _skill.GetIcon();
+            // Get the Skill first, before destroying
+            Skill pickedSkill = skillBuff.GetSkill();
+            bool taken = skillBuff.TakeBuff(); // May destroy the object
+
+            if (taken && pickedSkill != null)
+            {
+                _skill = pickedSkill;
+                _skillButtonIcon.enabled = true;
+                _skillButtonIcon.sprite = pickedSkill.GetIcon();
+            }
         }
     }
 }

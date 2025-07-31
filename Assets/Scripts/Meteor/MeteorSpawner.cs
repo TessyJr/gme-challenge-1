@@ -72,8 +72,8 @@ public class MeteorSpawner : MonoBehaviour
 
         float topY = topCenter.y - topHalfHeight - _offsetBorder;
         float bottomY = bottomCenter.y + bottomHalfHeight + _offsetBorder;
-        float leftX = leftCenter.x - leftHalfWidth - _offsetBorder;
-        float rightX = rightCenter.x + rightHalfWidth + _offsetBorder;
+        float leftX = leftCenter.x + leftHalfWidth + _offsetBorder;
+        float rightX = rightCenter.x - rightHalfWidth - _offsetBorder;
 
         Vector3 topLeft = new(leftX, topY, 0f);
         Vector3 topRight = new(rightX, topY, 0f);

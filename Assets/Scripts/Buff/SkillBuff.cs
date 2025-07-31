@@ -10,6 +10,7 @@ public class SkillBuff : MonoBehaviour
     [SerializeField] private float _floatFrequency = 3f;
 
     private Vector3 _startPos;
+    private bool _isTaken = false;
 
     private void Start()
     {
@@ -30,9 +31,17 @@ public class SkillBuff : MonoBehaviour
     public void SetSpawner(SkillBuffSpawner spawner) => _spawner = spawner;
     public Skill GetSkill() => _skill;
 
-    public void TakeBuff()
+    public bool TakeBuff()
     {
-        _spawner?.OnBuffTaken();
-        Destroy(gameObject);
+        if (!_isTaken)
+        {
+            _isTaken = true;
+            _spawner?.OnBuffTaken();
+            Destroy(gameObject);
+
+            return true;
+        }
+
+        return false;
     }
 }
