@@ -38,22 +38,15 @@ public class ShieldController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Meteor"))
         {
-            MeteorController meteorController = collision.gameObject.GetComponent<MeteorController>();
-
-            if (meteorController._isReadyToDamage && !meteorController._hasDamaged)
+            if (_playerController != null)
             {
-                if (_playerController != null)
-                {
-                    Vector2 knockbackDir = (_playerController.transform.position - collision.transform.position).normalized;
+                Vector2 knockbackDir = (_playerController.transform.position - collision.transform.position).normalized;
 
-                    _playerController.ApplyKnockback(knockbackDir * _knockbackForce);
-                    _playerController.SetIsShielded(false);
-
-                    meteorController._hasDamaged = true;
-                }
-
-                Destroy(gameObject);
+                _playerController.ApplyKnockback(knockbackDir * _knockbackForce);
+                _playerController.SetIsShielded(false);
             }
+
+            Destroy(gameObject);
         }
     }
 
