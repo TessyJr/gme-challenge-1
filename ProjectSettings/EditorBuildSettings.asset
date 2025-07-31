@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TessyScene.unity
-    guid: 7d6416e3f83454e9fa7b6d0566aee0f5
+    guid: 3f32f832d30ef49b8a9ba2c620a5c311
   - enabled: 0
     path: Assets/Scenes/AmarScene.unity
     guid: 4446b0b63c66c40879b80260c163046c
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MeteorScene.unity
     guid: 371a3ba5448c34d079d41fecbc60e183
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BuffScene.unity
     guid: a127fe083017b40fba81c07c3826c2ac
   m_configObjects: {}
