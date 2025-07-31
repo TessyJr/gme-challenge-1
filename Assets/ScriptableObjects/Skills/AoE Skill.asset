@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cd41cdae6734e4892db3211a81ae2b, type: 3}
   m_Name: AoE Skill
   m_EditorClassIdentifier: 
-  _duration: 3
+  _icon: {fileID: 21300000, guid: 6e95f73d5848a4749b06f1cac81c72e5, type: 3}
   _prefab: {fileID: 5428816526165078575, guid: 152aa0f32ace64984b51461ec7839bd6, type: 3}
