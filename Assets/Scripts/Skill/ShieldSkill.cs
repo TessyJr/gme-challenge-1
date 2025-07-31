@@ -13,8 +13,8 @@ public class ShieldSkill : Skill
         player.SetIsShielded(true);
 
         GameObject shield = Instantiate(shieldPrefab, user.transform.position, Quaternion.identity, user.transform);
-        shield.GetComponent<ShieldController>().SetPlayerController(player);
-
-        Destroy(shield, shieldDuration);
+        ShieldController controller = shield.GetComponent<ShieldController>();
+        controller.SetPlayerController(player);
+        controller.StartShieldTimer(shieldDuration);
     }
 }
