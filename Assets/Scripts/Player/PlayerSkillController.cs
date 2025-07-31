@@ -19,8 +19,9 @@ public class PlayerSkillController : MonoBehaviour
 
         if (collidedObject.CompareTag("SkillBuff"))
         {
-            _skill = collidedObject.GetComponent<SkillBuff>().GetSkill();
-            Destroy(collidedObject);
+            SkillBuff skillBuff = collidedObject.GetComponent<SkillBuff>();
+            _skill = skillBuff.GetSkill();
+            skillBuff.TakeBuff();
         }
     }
 }
