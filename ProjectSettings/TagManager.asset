@@ -8,6 +8,7 @@ TagManager:
   - Head
   - Spike
   - SkillBuff
+  - Meteor
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Water
   - UI
   - Spike
-  - 
-  - 
+  - Character
+  - Weapon
   - 
   - 
   - 
@@ -44,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Character
+    uniqueID: 967061269
+    locked: 0
+  - name: Weapon
+    uniqueID: 2250675979
     locked: 0
