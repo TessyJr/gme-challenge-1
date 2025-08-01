@@ -9,6 +9,9 @@ public class SkillBuff : MonoBehaviour
     [SerializeField] private float _floatAmplitude = 0.02f;
     [SerializeField] private float _floatFrequency = 3f;
 
+    [Header("Particle Settings")]
+    [SerializeField] private GameObject _particle;
+
     private Vector3 _startPos;
     private bool _isTaken = false;
 
@@ -38,11 +41,20 @@ public class SkillBuff : MonoBehaviour
             AudioManager.instance.PlaySFX(AudioManager.instance.buffEffect);
             _isTaken = true;
             _spawner?.OnBuffTaken();
-            Destroy(gameObject);
 
+            Destroy(gameObject);
             return true;
         }
 
         return false;
+    }
+
+    public void SpawnParticle(GameObject target)
+    {
+        if (_particle == null || target == null) return;
+
+        GameObject p = Instantiate(_particle, transform.position, Quaternion.identity);
+        SkillBuffParticleController skillBuffPrticleController = p.GetComponent<SkillBuffParticleController>();
+        skillBuffPrticleController.MoveParticle(target.transform.position);
     }
 }
