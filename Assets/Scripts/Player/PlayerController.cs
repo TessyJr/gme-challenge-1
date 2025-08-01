@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Settings")]
     [SerializeField] private Transform _weapon;
     [SerializeField] private float _orbitRadius = 1.2f;
+
+    [Header("Damage Flash Settings")]
+    [SerializeField] private GameObject _damageFlash;
+
+    [Header("Particle Settings")]
+    [SerializeField] private ParticleSystem _bloodParticle;
 
     // DASH
     private float _dashSpeed;
@@ -107,8 +114,31 @@ public class PlayerController : MonoBehaviour
         _healthText.text = _health.ToString();
 
         if (_health <= 0)
+        {
             Destroy(gameObject);
+            return;
+        }
+
+        // Damage flash
+        if (_damageFlash != null)
+            StartCoroutine(FlashDamageEffect());
+
+
+        // blood particle
+        if (_bloodParticle != null)
+        {
+            Instantiate(_bloodParticle, transform.position, Quaternion.identity, transform);
+        }
     }
+
+    private IEnumerator FlashDamageEffect()
+    {
+        _damageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f); // flash duration
+        _damageFlash.SetActive(false);
+    }
+
+
 
     public void ApplyKnockback(Vector2 force)
     {
