@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9176b3ad743c47989eb3ed7c8ccc132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneName: TessyScene
+  _sceneName: ArenaSceneNew
 --- !u!1 &1191883995
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,6 +101,7 @@ MonoBehaviour:
   _skill: {fileID: 11400000, guid: 584d117b9c9da4699b9a1a3b5aeb03e0, type: 2}
   _floatAmplitude: 0.02
   _floatFrequency: 3
+  _particle: {fileID: 6344864337548990278, guid: fe01ee9fb4eee465fad5e2f03a71e6c8, type: 3}
 --- !u!61 &3548865902635413209
 BoxCollider2D:
   m_ObjectHideFlags: 0
