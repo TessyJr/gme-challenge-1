@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [Header("Damage Flash Settings")]
     [SerializeField] private GameObject _damageFlash;
 
+    [Header("Particle Settings")]
+    [SerializeField] private ParticleSystem _bloodParticle;
+
     // DASH
     private float _dashSpeed;
     private bool _isDashing = false;
@@ -119,6 +122,13 @@ public class PlayerController : MonoBehaviour
         // Damage flash
         if (_damageFlash != null)
             StartCoroutine(FlashDamageEffect());
+
+
+        // blood particle
+        if (_bloodParticle != null)
+        {
+            Instantiate(_bloodParticle, transform.position, Quaternion.identity, transform);
+        }
     }
 
     private IEnumerator FlashDamageEffect()

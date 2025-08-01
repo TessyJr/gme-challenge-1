@@ -5,6 +5,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float _knockbackForce = 10f;
     [SerializeField] private PlayerController _owner; // Set this from PlayerController
 
+    [Header("Particle Settings")]
+    [SerializeField] private ParticleSystem _weaponParticle;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D hitCollider = collision.collider;
@@ -22,8 +25,6 @@ public class WeaponController : MonoBehaviour
 
                 Vector2 knockbackDir = (target.transform.position - transform.position).normalized;
                 target.ApplyKnockback(knockbackDir * _knockbackForce);
-
-                // Debug.Log($"[Player Knockback] {target.name} ← {knockbackDir}");
             }
         }
 
@@ -39,8 +40,12 @@ public class WeaponController : MonoBehaviour
 
                 otherPlayer.ApplyKnockback(dirToOther * _knockbackForce);
                 _owner.ApplyKnockback(dirToSelf * _knockbackForce);
+            }
 
-                // Debug.Log($"[Weapon Clash] {_owner.name} ⇄ {otherPlayer.name}");
+            if (_weaponParticle != null && collision.contactCount > 0)
+            {
+                Vector2 contactPoint = collision.GetContact(0).point;
+                Instantiate(_weaponParticle, contactPoint, Quaternion.identity);
             }
         }
     }

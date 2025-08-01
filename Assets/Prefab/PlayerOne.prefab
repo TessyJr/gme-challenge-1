@@ -541,6 +541,7 @@ MonoBehaviour:
   _weapon: {fileID: 4718074441040638861}
   _orbitRadius: 1.2
   _damageFlash: {fileID: 590167702426692775}
+  _bloodParticle: {fileID: 5631602513649390111, guid: acca4288b9bef4f049c038197ba6998e, type: 3}
 --- !u!114 &9203665816655538620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _knockbackForce: 8
   _owner: {fileID: 2782374358201472656}
+  _weaponParticle: {fileID: 318480210235606493, guid: f881bbcecc1ec4967ab62095b23c2d7b, type: 3}
 --- !u!61 &4332536081191395844
 BoxCollider2D:
   m_ObjectHideFlags: 0
