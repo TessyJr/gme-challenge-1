@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Volume vol;
     Vignette vignette;
 
+    [SerializeField] GameObject meteorSpawner;
+
     private PlayerController playerInfo1;
     private PlayerController playerInfo2;
     private bool p1Win;
@@ -230,6 +232,8 @@ public class GameManager : MonoBehaviour
 
     private void ExtraTime()
     {
+        // meteorSpawner.SetActive(false);
+        Destroy(meteorSpawner);
         StartCoroutine(MoveSpikeOverTime());
     }
 

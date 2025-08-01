@@ -24,6 +24,7 @@ public class AoEControlller : MonoBehaviour
         if (_indicator != null)
         {
             _indicator.transform.localScale = Vector3.zero;
+            AudioManager.instance.PlaySFX(AudioManager.instance.aoeEffect);
             StartCoroutine(Lifecycle());
         }
     }

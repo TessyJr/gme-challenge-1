@@ -555,7 +555,7 @@ Transform:
   m_GameObject: {fileID: 193380906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3104265, y: 0, z: 0}
+  m_LocalPosition: {x: 2.3110151, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 10.02245, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2817,8 +2817,9 @@ MonoBehaviour:
   spikeAbove: {fileID: 1102352418}
   spikeBelow: {fileID: 2062705983}
   moveDuration: 10
-  remainingTime: 10
+  remainingTime: 90
   vol: {fileID: 436358350}
+  meteorSpawner: {fileID: 1886294218}
   winText1: {fileID: 198363506}
   winText2: {fileID: 186149636}
   resetText: {fileID: 407734592}
@@ -2843,10 +2844,12 @@ MonoBehaviour:
   buffEffect: {fileID: 8300000, guid: 38bcb206582f641e7a1297b5b5b721c2, type: 3}
   damagedEffect: {fileID: 8300000, guid: 8c6e66a677cc545d98d656a925b53df2, type: 3}
   musicEndgame: {fileID: 8300000, guid: 5e6f3b8b97c3849fda0957388d54255b, type: 3}
-  meteorEffect: {fileID: 8300000, guid: 7f35554966f5f442081f2e6721f62d4e, type: 3}
+  meteorEffect: {fileID: 8300000, guid: 2275a9184ddd84c9aa5eae5bc3a9d45f, type: 3}
   dashEffect: {fileID: 8300000, guid: 1b2f54f57bfd54b3e9c23067d5fa7137, type: 3}
   suddenDeathAlarm: {fileID: 8300000, guid: 62524eb2a1dd74e84aa0328ad9c5e681, type: 3}
   swordSwingEffect: {fileID: 8300000, guid: 1a3befa3158ec436d862b0de6273de63, type: 3}
+  shieldEffect: {fileID: 8300000, guid: 4ace76e14eb244f7d80868622b1358ec, type: 3}
+  aoeEffect: {fileID: 8300000, guid: ff4c202681ad54ab4b532aaf9aec6b55, type: 3}
 --- !u!114 &983877836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6884211201200759157, guid: ea1341e02fb6d4ccd9fd43e005730fac, type: 3}
@@ -3842,7 +3845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b495c70a3ab1448a99cfaced6d2ec05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6269d64cc06ad4243b7d410e0e2f9345, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4414,7 +4417,7 @@ Transform:
   m_GameObject: {fileID: 1636160095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3104265, y: 0, z: 0}
+  m_LocalPosition: {x: -2.3110151, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 10.02245, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4852,6 +4855,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885138217}
   m_CullTransparentMesh: 1
+--- !u!1 &1886294218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7249262942586574368, guid: be5e1f279b62b49aabae74708a3ae473, type: 3}
+  m_PrefabInstance: {fileID: 1234539964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937101227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5189,7 +5197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8f06e79529fea4a0a88c57c14d0b4d95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e26d4a67644454f5cb2bb6e8dc418416, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

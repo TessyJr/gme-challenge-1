@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip dashEffect;
     public AudioClip suddenDeathAlarm;
     public AudioClip swordSwingEffect;
+    public AudioClip shieldEffect;
+
+    public AudioClip aoeEffect;
+
 
     void Awake()
     {
