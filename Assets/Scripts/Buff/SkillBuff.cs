@@ -34,11 +34,12 @@ public class SkillBuff : MonoBehaviour
     public void SetSpawner(SkillBuffSpawner spawner) => _spawner = spawner;
     public Skill GetSkill() => _skill;
 
-    public bool TakeBuff()
+    public bool TakeBuff(GameObject target)
     {
         if (!_isTaken)
         {
             AudioManager.instance.PlaySFX(AudioManager.instance.buffEffect);
+            SpawnParticle(target);
             _isTaken = true;
             _spawner?.OnBuffTaken();
 

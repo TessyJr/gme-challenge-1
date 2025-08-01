@@ -29,8 +29,7 @@ public class PlayerSkillController : MonoBehaviour
 
             // Get the Skill first, before destroying
             Skill pickedSkill = skillBuff.GetSkill();
-            skillBuff.SpawnParticle(_skillButtonIcon.gameObject);
-            bool taken = skillBuff.TakeBuff(); // May destroy the object
+            bool taken = skillBuff.TakeBuff(_skillButtonIcon.gameObject);
 
             if (taken && pickedSkill != null)
             {
