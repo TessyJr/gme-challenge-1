@@ -10,6 +10,7 @@ public class ShieldController : MonoBehaviour
 
     public void StartShieldTimer(float duration)
     {
+        AudioManager.instance.PlaySFX(AudioManager.instance.shieldEffect);
         StartCoroutine(ShieldDurationCoroutine(duration));
     }
 
