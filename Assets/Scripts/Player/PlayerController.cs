@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_lastDirection.sqrMagnitude > 0.01f)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.dashEffect);
             _dashSpeed = dashSpeed;
             _isDashing = true;
             _dashTimer = _dashDuration;
@@ -123,12 +124,13 @@ public class PlayerController : MonoBehaviour
 
         // Damage flash
         if (_damageFlash != null)
+        {
             StartCoroutine(FlashDamageEffect());
-
-
+        }
         // blood particle
         if (_bloodParticle != null)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.damagedEffect);
             Instantiate(_bloodParticle, transform.position, Quaternion.identity, transform);
         }
     }
