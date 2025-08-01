@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject
+public abstract class Skill : ScriptableObject 
 {
     [SerializeField] private Sprite _icon;
 

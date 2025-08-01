@@ -1,8 +1,13 @@
+using System.Collections;
 using TMPro;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+
+
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;
 
@@ -18,10 +23,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _weapon;
     [SerializeField] private float _orbitRadius = 1.2f;
 
+    [Header("Dash Settings")]
+    Rigidbody2D rb;
+    [SerializeField] private TrailRenderer tr;
+
     // DASH
     private float _dashSpeed;
     private bool _isDashing = false;
     private float _dashTimer = 0f;
+
+    private bool canDash = true;
+    private float dashCoolDown = 1;
+
+    private float dashingTrailTime = 1f;
+
 
     //SHIELD
     private bool _isShielded = false;
@@ -37,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        tr = GetComponent<TrailRenderer>();
         _healthText.text = _health.ToString();
     }
 
@@ -96,6 +112,7 @@ public class PlayerController : MonoBehaviour
             _dashSpeed = dashSpeed;
             _isDashing = true;
             _dashTimer = _dashDuration;
+            StartCoroutine(DashTrail());
         }
     }
 
@@ -143,4 +160,16 @@ public class PlayerController : MonoBehaviour
 
     public int GetHealth() => _health;
     public void SetIsShielded(bool isShielded) => _isShielded = isShielded;
+
+    private IEnumerator DashTrail()
+    {
+        
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTrailTime);
+        tr.emitting = false;
+        
+        
+      
+
+    }
 }

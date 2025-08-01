@@ -14109,9 +14109,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884211201200759157, guid: ea1341e02fb6d4ccd9fd43e005730fac, type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: 4449628762298902994, guid: 1ab901fbd1dc34c639d022d5d125e213, type: 3}
+    - target: {fileID: 6884211201200759157, guid: ea1341e02fb6d4ccd9fd43e005730fac, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 2113428942}
+    - target: {fileID: 6884211201200759157, guid: ea1341e02fb6d4ccd9fd43e005730fac, type: 3}
+      propertyPath: dashTrailDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14166,9 +14174,17 @@ PrefabInstance:
       value: 1.76
       objectReference: {fileID: 0}
     - target: {fileID: 2782374358201472656, guid: 0cef06504685549e396b6415edc0efcd, type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: 4449628762298902994, guid: 1ab901fbd1dc34c639d022d5d125e213, type: 3}
+    - target: {fileID: 2782374358201472656, guid: 0cef06504685549e396b6415edc0efcd, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 830771687}
+    - target: {fileID: 2782374358201472656, guid: 0cef06504685549e396b6415edc0efcd, type: 3}
+      propertyPath: dashTrailDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3283757793949406647, guid: 0cef06504685549e396b6415edc0efcd, type: 3}
       propertyPath: m_Camera
       value: 
