@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Particle Settings")]
     [SerializeField] private ParticleSystem _bloodParticle;
+    [SerializeField] private TrailRenderer tr;
+    [SerializeField] private float dashingTrailTime = 1f;
 
     // DASH
     private float _dashSpeed;
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        tr = GetComponent<TrailRenderer>();
         _maxHealth = _health;
         UpdateHealthBar();
     }
@@ -106,6 +109,7 @@ public class PlayerController : MonoBehaviour
             _dashSpeed = dashSpeed;
             _isDashing = true;
             _dashTimer = _dashDuration;
+            StartCoroutine(DashTrail());
         }
     }
 
@@ -188,6 +192,13 @@ public class PlayerController : MonoBehaviour
         {
             isTouchingSpike = false;
         }
+    }
+
+    private IEnumerator DashTrail()
+    {
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTrailTime);
+        tr.emitting = false;
     }
 
     public int GetHealth() => _health;
