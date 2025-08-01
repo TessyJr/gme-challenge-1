@@ -45,6 +45,7 @@ public class MeteorSpawner : MonoBehaviour
 
     private void SpawnMeteors()
     {
+        AudioManager.instance.PlaySFX(AudioManager.instance.meteorEffect);
         for (int i = 0; i < _meteorAmount; i++)
         {
             float x = Random.Range(_leftX, _rightX);

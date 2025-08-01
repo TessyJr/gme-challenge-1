@@ -35,6 +35,7 @@ public class SkillBuff : MonoBehaviour
     {
         if (!_isTaken)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.buffEffect);
             _isTaken = true;
             _spawner?.OnBuffTaken();
             Destroy(gameObject);

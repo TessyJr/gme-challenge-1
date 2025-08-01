@@ -163,6 +163,8 @@ public class GameManager : MonoBehaviour
 
         if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() > 0)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.musicEndgame);
+
             p1Win = false;
             p2Win = true;
             isGameOver = true;
@@ -170,6 +172,7 @@ public class GameManager : MonoBehaviour
             winText1.text = "LOSE";
             winText2.text = "WIN";
             resultGUI.SetActive(true);
+            timerText.gameObject.SetActive(false);
 
             resultLOSE1.SetActive(true);
             resultWIN2.SetActive(true);
@@ -177,6 +180,8 @@ public class GameManager : MonoBehaviour
             resultLOSE2.SetActive(false);
             resultWIN1.SetActive(false);
 
+            Destroy(playerOne);
+            Destroy(playerTwo);
             // winText1.gameObject.SetActive(true);
             // winText2.gameObject.SetActive(true);
             // resetButton.SetActive(true);
@@ -187,6 +192,8 @@ public class GameManager : MonoBehaviour
         }
         else if (playerInfo2.GetHealth() <= 0 && playerInfo1.GetHealth() > 0)
         {
+            AudioManager.instance.PlaySFX(AudioManager.instance.musicEndgame);
+
             p1Win = true;
             p2Win = false;
             isGameOver = true;
@@ -194,12 +201,16 @@ public class GameManager : MonoBehaviour
             winText1.text = "WIN";
             winText2.text = "LOSE";
             resultGUI.SetActive(true);
+            timerText.gameObject.SetActive(false);
 
             resultLOSE2.SetActive(true);
             resultWIN1.SetActive(true);
 
             resultLOSE1.SetActive(false);
             resultWIN2.SetActive(false);
+
+            Destroy(playerOne);
+            Destroy(playerTwo);
 
             // winText1.gameObject.SetActive(true);
             // winText2.gameObject.SetActive(true);
@@ -212,6 +223,7 @@ public class GameManager : MonoBehaviour
         else if (playerInfo1.GetHealth() <= 0 && playerInfo2.GetHealth() <= 0)
         {
             //tetep ada draw condition kah?
+            timerText.gameObject.SetActive(false);
             ExtraTime();
         }
     }
@@ -224,18 +236,20 @@ public class GameManager : MonoBehaviour
     private IEnumerator MoveSpikeOverTime()
     {
         Vector3 startPos = spikeAbove.transform.position;
-        Vector3 endPos = new Vector3(startPos.x, 2.5f, startPos.z);
+        Vector3 endPos = new Vector3(startPos.x, 3f, startPos.z);
 
         Vector3 startPos1 = spikeBelow.transform.position;
-        Vector3 endPos1 = new Vector3(startPos1.x, -2.5f, startPos1.z);
+        Vector3 endPos1 = new Vector3(startPos1.x, -3f, startPos1.z);
 
         float elapsed = 0f;
-        float countdown = 10f;
+        float countdown = 20f;
         float displayCountdown = countdown;
         float vignetteBase = 0.3f;
         float vignetteMax = 0.6f;
 
         timerSuddenDeath.gameObject.SetActive(true);
+
+        AudioManager.instance.StartLoopMusic(AudioManager.instance.suddenDeathAlarm);
 
         while (elapsed < moveDuration)
         {
@@ -276,6 +290,9 @@ public class GameManager : MonoBehaviour
 
         timerSuddenDeath.rectTransform.localScale = Vector3.one;
         timerSuddenDeath.text = "0";
+
+        AudioManager.instance.StopLoopMusic();
+
         timerSuddenDeath.gameObject.SetActive(false);
     }
 

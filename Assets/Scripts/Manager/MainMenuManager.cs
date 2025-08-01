@@ -8,6 +8,10 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private string _sceneName;
 
+    [Header("Audio Source")]
+    [SerializeField] AudioSource musicSource;
+    public AudioClip musicBackground;
+
     void Awake()
     {
         if (instance == null)
@@ -20,8 +24,15 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        musicSource.clip = musicBackground;
+        musicSource.Play();
+    }
+
     public void StartGame()
     {
+        musicSource.Stop();
         SceneManager.LoadScene(_sceneName);
     }
 }

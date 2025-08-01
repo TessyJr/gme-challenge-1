@@ -48,6 +48,7 @@ public class WeaponController : MonoBehaviour
             if (_weaponParticle != null && collision.contactCount > 0)
             {
                 Vector2 contactPoint = collision.GetContact(0).point;
+                AudioManager.instance.PlaySFX(AudioManager.instance.swordSwingEffect);
                 Instantiate(_weaponParticle, contactPoint, Quaternion.identity);
             }
         }
