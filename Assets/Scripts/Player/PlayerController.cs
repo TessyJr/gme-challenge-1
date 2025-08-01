@@ -1,6 +1,6 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
 
     [Header("Health Settings")]
-    [SerializeField] private int _health = 10;
-    [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private int _health = 50;
+    [SerializeField] private int _maxHealth = 50;
+    [SerializeField] private Image _healthBar;
 
     [Header("Movement Settings")]
     public SimpleJoystick _joystick;
@@ -40,11 +41,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _input;
     private Vector2 _lastDirection;
-    private Vector2 _externalForce; // <-- Knockback force
+    private Vector2 _externalForce;
 
     void Start()
     {
-        _healthText.text = _health.ToString();
+        _maxHealth = _health;
+        UpdateHealthBar();
     }
 
     void Update()
@@ -111,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if (_isShielded) return;
 
         _health -= amount;
-        _healthText.text = _health.ToString();
+        UpdateHealthBar();
 
         if (_health <= 0)
         {
@@ -131,14 +133,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateHealthBar()
+    {
+        if (_healthBar != null)
+        {
+            float healthPercent = Mathf.Clamp01((float)_health / _maxHealth);
+
+            // ✅ Update width
+            RectTransform rt = _healthBar.rectTransform;
+            Vector2 size = rt.sizeDelta;
+            size.x = healthPercent * 1.6f; // width range: 0 → 1.6
+            rt.sizeDelta = size;
+
+            // ✅ Update color (green → yellow → red)
+            _healthBar.color = Color.Lerp(Color.red, Color.green, healthPercent);
+        }
+    }
+
     private IEnumerator FlashDamageEffect()
     {
         _damageFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f); // flash duration
         _damageFlash.SetActive(false);
     }
-
-
 
     public void ApplyKnockback(Vector2 force)
     {

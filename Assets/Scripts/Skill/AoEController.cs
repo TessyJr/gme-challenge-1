@@ -3,6 +3,9 @@ using System.Collections;
 
 public class AoEControlller : MonoBehaviour
 {
+    [Header("Damage Settings")]
+    [SerializeField] private int _damage = 5;
+
     [Header("Collider Settings")]
     [SerializeField] private CircleCollider2D _collider;
 
@@ -63,7 +66,7 @@ public class AoEControlller : MonoBehaviour
             var player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.DecreaseHealth(10);
+                player.DecreaseHealth(_damage);
 
                 Vector2 knockbackDir = (player.transform.position - transform.position).normalized;
                 Vector2 knockback = knockbackDir * _knockbackForce;

@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private float _knockbackForce = 10f;
-    [SerializeField] private PlayerController _owner; // Set this from PlayerController
+    [Header("Damage Settings")]
+    [SerializeField] private int _damage = 1;
 
     [Header("Particle Settings")]
     [SerializeField] private ParticleSystem _weaponParticle;
+
+    [SerializeField] private float _knockbackForce = 10f;
+    [SerializeField] private PlayerController _owner;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
