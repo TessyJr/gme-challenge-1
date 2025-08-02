@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,10 @@ public class PlayerController : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private int _health = 50;
     [SerializeField] private int _maxHealth = 50;
+    [SerializeField] private Canvas _healthCanvas;
     [SerializeField] private Image _healthBar;
+    [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private GameObject _damageTextPrefab;
 
     [Header("Movement Settings")]
     public SimpleJoystick _joystick;
@@ -33,10 +37,10 @@ public class PlayerController : MonoBehaviour
     private bool _isDashing = false;
     private float _dashTimer = 0f;
 
-    //SHIELD
+    // SHIELD
     private bool _isShielded = false;
 
-    //SPIKE
+    // SPIKE
     private bool isTouchingSpike = false;
     private float spikeDamageTimer = 0f;
     private float spikeDamageInterval = .8f;
@@ -95,7 +99,6 @@ public class PlayerController : MonoBehaviour
             velocity = _input * _playerSpeed;
 
         Vector2 totalVelocity = velocity + _externalForce;
-
         _rb.MovePosition(_rb.position + totalVelocity * Time.fixedDeltaTime);
 
         _externalForce = Vector2.Lerp(_externalForce, Vector2.zero, 10f * Time.fixedDeltaTime);
@@ -131,12 +134,19 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(FlashDamageEffect());
         }
+
         // blood particle
         if (_bloodParticle != null)
         {
             AudioManager.instance.PlaySFX(AudioManager.instance.damagedEffect);
             Instantiate(_bloodParticle, transform.position, Quaternion.identity, transform);
         }
+
+        // Shake health canvas
+        StartCoroutine(ShakeHealthCanvas());
+
+        // Show animated damage text
+        ShowDamageText($"-{amount}");
     }
 
     private void UpdateHealthBar()
@@ -145,22 +155,83 @@ public class PlayerController : MonoBehaviour
         {
             float healthPercent = Mathf.Clamp01((float)_health / _maxHealth);
 
-            // ✅ Update width
             RectTransform rt = _healthBar.rectTransform;
             Vector2 size = rt.sizeDelta;
-            size.x = healthPercent * 1.6f; // width range: 0 → 1.6
+            size.x = healthPercent * 1.6f;
             rt.sizeDelta = size;
 
-            // ✅ Update color (green → yellow → red)
             _healthBar.color = Color.Lerp(Color.red, Color.green, healthPercent);
+        }
+
+        if (_healthText != null)
+        {
+            _healthText.text = _health.ToString();
         }
     }
 
     private IEnumerator FlashDamageEffect()
     {
         _damageFlash.SetActive(true);
-        yield return new WaitForSeconds(0.1f); // flash duration
+        yield return new WaitForSeconds(0.1f);
         _damageFlash.SetActive(false);
+    }
+
+    private IEnumerator ShakeHealthCanvas(float duration = 0.2f, float magnitude = 0.05f)
+    {
+        if (_healthCanvas == null) yield break;
+
+        RectTransform canvasTransform = _healthCanvas.GetComponent<RectTransform>();
+        Vector3 originalPos = canvasTransform.anchoredPosition;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * magnitude;
+            float offsetY = Random.Range(-1f, 1f) * magnitude;
+
+            canvasTransform.anchoredPosition = originalPos + new Vector3(offsetX, offsetY, 0);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canvasTransform.anchoredPosition = originalPos;
+    }
+
+    private void ShowDamageText(string text)
+    {
+        if (_damageTextPrefab == null || _healthCanvas == null) return;
+
+        GameObject instance = Instantiate(_damageTextPrefab, _healthCanvas.transform);
+        TextMeshProUGUI tmp = instance.GetComponent<TextMeshProUGUI>();
+        tmp.text = text;
+
+        RectTransform rt = instance.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(0f, -0.5f); // start at center
+
+        StartCoroutine(AnimateDamageText(tmp, rt));
+    }
+
+    private IEnumerator AnimateDamageText(TextMeshProUGUI tmp, RectTransform rt)
+    {
+        float duration = 0.8f;
+        float elapsed = 0f;
+        Color originalColor = tmp.color;
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 endPos = startPos + new Vector2(0f, -0.5f); // go downward
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            rt.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+            tmp.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1 - t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(rt.gameObject);
     }
 
     public void ApplyKnockback(Vector2 force)
